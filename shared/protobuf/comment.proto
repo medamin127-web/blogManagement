@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package comment;
+
+service CommentService {
+  rpc GetComment(GetCommentRequest) returns (CommentResponse) {}
+  rpc CreateComment(CreateCommentRequest) returns (CommentResponse) {}
+  rpc UpdateComment(UpdateCommentRequest) returns (CommentResponse) {}
+  rpc DeleteComment(DeleteCommentRequest) returns (CommentResponse) {}
+}
+
+message GetCommentRequest {
+  string commentId = 1;
+}
+
+message CreateCommentRequest {
+  string content = 1;
+  string userId = 2;
+  string blogId = 3;
+}
+
+message UpdateCommentRequest {
+  string commentId = 1;
+  string content = 2;
+}
+
+message DeleteCommentRequest {
+  string commentId = 1;
+}
+
+message CommentResponse {
+  string commentId = 1;
+  string content = 2;
+  string userId = 3;
+  string blogId = 4;
+}

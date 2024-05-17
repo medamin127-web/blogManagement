@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package blog;
+
+service BlogService {
+  rpc GetBlog(GetBlogRequest) returns (BlogResponse) {}
+  rpc CreateBlog(CreateBlogRequest) returns (BlogResponse) {}
+  rpc UpdateBlog(UpdateBlogRequest) returns (BlogResponse) {}
+  rpc DeleteBlog(DeleteBlogRequest) returns (BlogResponse) {}
+  rpc ListBlogsByUser(ListBlogsByUserRequest) returns (ListBlogsByUserResponse) {}
+  rpc ListCommentsByBlog(ListCommentsByBlogRequest) returns (ListCommentsByBlogResponse) {}
+  rpc ListBlogsByCategory(ListBlogsByCategoryRequest) returns (ListBlogsByCategoryResponse) {}
+}
+
+message GetBlogRequest {
+  string blogId = 1;
+}
+
+message CreateBlogRequest {
+  string title = 1;
+  string content = 2;
+  string userId = 3;
+  string category = 4;
+}
+
+message UpdateBlogRequest {
+  string blogId = 1;
+  string title = 2;
+  string content = 3;
+  string category = 4;
+}
+
+message DeleteBlogRequest {
+  string blogId = 1;
+}
+
+message BlogResponse {
+  string blogId = 1;
+  string title = 2;
+  string content = 3;
+  string userId = 4;
+  string category = 5;
+}
+
+message ListBlogsByUserRequest {
+  string userId = 1;
+}
+
+message ListBlogsByUserResponse {
+  repeated BlogResponse blogs = 1;
+}
+
+message ListCommentsByBlogRequest {
+  string blogId = 1;
+}
+
+message CommentResponse {
+  string commentId = 1;
+  string content = 2;
+  string userId = 3;
+}
+
+message ListCommentsByBlogResponse {
+  repeated CommentResponse comments = 1;
+}
+
+message ListBlogsByCategoryRequest {
+  string category = 1;
+}
+
+message ListBlogsByCategoryResponse {
+  repeated BlogResponse blogs = 1;
+}
